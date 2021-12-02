@@ -89,31 +89,34 @@ class ClientController extends Controller
      * @param int $client
      * /cliente/{id}
      */
-    public function editClient(int $client, Request $request)
+    public function editClient(Request $request,int $id)
     {
-        $client = Client::find($client);
+//        var_dump($request->all());die();
+        $client = Client::find($id);
         if (!$client) {
             return response()->json([
                 'error' => 'not found'
             ], 404);
 
         }
+
         $rules = [
-            'name' => 'required',
-            'phone' => 'required',
-            'CPF' => 'required|unique:clients',
-            'license_plate' => 'required|min:7|max:7'
+            'CPF' => 'unique:clients',
+            'license_plate' => 'min:7|max:7'
         ];
 
         $validation = Validator::make($request->all(), $rules);
+
         if ($validation->fails()) {
             return response()->json([
                 'error' => 'Unprocessable Entity',
                 'message' => $validation->errors()
             ], 422);
         }
-
         $client->update($request->all());
+
+
+
         return response()->json(['message' => 'resource updated successfully', 'client' => $client], 204);
     }
 
@@ -121,9 +124,9 @@ class ClientController extends Controller
      * @param int $client
      * cliente/{id}
      */
-    public function deleteClient(int $client)
+    public function deleteClient(int $id)
     {
-        $client = Client::find($client);
+        $client = Client::find($id);
         if (!$client) {
             return response()->json(['error' => 'not found'], 404);
 
