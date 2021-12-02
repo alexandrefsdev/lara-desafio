@@ -19,6 +19,8 @@ Acesse o phpMyAdmin(http://localhost:1010/) para criar o database=laradock utf8m
 
 `php artisan migrate --seed`
 
+## Documentacao da API
+https://www.postman.com/dark-flare-547640/workspace/jn2/collection/13573233-b2735b39-1434-4d41-961c-815f1983255d
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>

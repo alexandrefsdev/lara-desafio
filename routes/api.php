@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/cliente/{id}', [ClientController::class, 'getClient']);
-Route::get('/consulta/final-placa/{numero}', [ClientController::class, 'getAllClientsWhoHaveTheSameLicensePlateEnds']);
+Route::get('/consulta/final-placa/{lastNumber}', [ClientController::class, 'getAllClientsWhoHaveTheSameLicensePlateEnds']);
 
 Route::post('/cliente/', [ClientController::class, 'createClient']);
 Route::put('/cliente/{id}', [ClientController::class, 'editClient']);

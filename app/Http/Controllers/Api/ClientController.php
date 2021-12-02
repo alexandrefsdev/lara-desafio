@@ -29,16 +29,16 @@ class ClientController extends Controller
      * @param int $client
      * /consulta/final-placa/{numero}
      */
-    public function getAllClientsWhoHaveTheSameLicensePlateEnds(int $client)
+    public function getAllClientsWhoHaveTheSameLicensePlateEnds(int $lastNumber)
     {
-        if (!$this->isSingleDigitGetRequest($client)) {
+        if (!$this->isSingleDigitGetRequest($lastNumber)) {
             return response()->json([
                 'error' => 'Unprocessable Entity',
                 'message' => 'the value must be between [0-9]'
             ], 422);
         }
 
-        $clients = Client::where('license_plate', 'like', '%' . $client)->paginate(5);
+        $clients = Client::where('license_plate', 'like', '%' . $lastNumber)->paginate(5);
 
         return response()->json($clients);
     }
@@ -91,7 +91,6 @@ class ClientController extends Controller
      */
     public function editClient(Request $request, int $id)
     {
-//        var_dump($request->all());die();
         $client = Client::find($id);
         if (!$client) {
             return response()->json([
