@@ -89,7 +89,7 @@ class ClientController extends Controller
      * @param int $client
      * /cliente/{id}
      */
-    public function editClient(Request $request,int $id)
+    public function editClient(Request $request, int $id)
     {
 //        var_dump($request->all());die();
         $client = Client::find($id);
@@ -116,7 +116,6 @@ class ClientController extends Controller
         $client->update($request->all());
 
 
-
         return response()->json(['message' => 'resource updated successfully', 'client' => $client], 204);
     }
 
@@ -135,6 +134,7 @@ class ClientController extends Controller
         $client->delete();
         return response()->json([], 204);
     }
+
 }
 
 
